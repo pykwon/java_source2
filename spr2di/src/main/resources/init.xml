@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--  
+모든 설정을 자바코드로 부터 분리, 외부화 한다.
+또는 어노테이션을 사용해 자바코드 내에서 DI 설정을 할수도 있다.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+    <!-- DI : Constructor Injection -->
+    <bean id="serviceImpl" class="controller.ProcessServiceImpl">
+    	<constructor-arg>
+    		<ref bean="dataDaoImpl"/>
+    	</constructor-arg>
+    </bean>
+
+    <bean name="dataDaoImpl" class="model.DataDaoImpl" />
+</beans>
