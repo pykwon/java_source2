@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="mImpl" class="pack.controller.MessageImpl" scope="singleton"> <!-- "prototype" -->
+		<!-- constructor injection -->
+		<constructor-arg index="1" type="java.lang.String">
+			<value>안녕하세요</value>
+		</constructor-arg>
+		<constructor-arg index="0" type="String">
+			<value>반가워요</value>
+		</constructor-arg>
+		<constructor-arg index="2" type="int" value="24" />
+		<constructor-arg index="3" type="pack.model.MyInfoInter" ref="my" />
+		
+		<!-- setter injection -->
+		<property name="spec">
+			<value>자바 개발 전문</value>
+		</property>
+		<property name="fileInter">
+			<ref bean="outFileInterImpl"/>
+		</property>
+	</bean>
+	
+	<bean id="myInfo" name="my,good" class="pack.model.MyInfo" />
+	
+	<bean id="outFileInterImpl" class="pack.other.OutFileInterImpl">
+		<property name="filePath" value="c:/work2/message.txt" />
+	</bean>
+</beans>
