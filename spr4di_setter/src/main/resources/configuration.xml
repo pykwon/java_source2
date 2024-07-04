@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 방법1 : 일반적인 setter 사용 -->
+	<!--  
+	<bean id="myProcess" class="pack.MyProcess">
+		<property name="nai" value="25" />
+		<property name="name" value="김치국" />
+		<property name="showData" ref="show" />
+	</bean>
+
+    <bean id="show" class="pack.ShowData" />
+    -->
+    
+    <!-- 방법2 : 일반적인 setter 사용 -->
+    <!--  
+    <bean id="myProcess" class="pack.MyProcess">
+    	<property name="nai">
+    		<value>26</value>
+    	</property>
+    	<property name="name">
+    		<value>공기밥</value>
+    	</property>
+    	<property name="showData">
+    		<bean class="pack.ShowData" />
+    	</property>
+    </bean>
+    -->
+    
+    <!-- 방법3 : XML namespace로 setter 사용 -->
+    <bean id="myProcess" class="pack.MyProcess"
+    	p:nai="27"
+    	p:name="주먹밥"
+    	p:showData-ref="show" />
+    
+    <bean id="show" class="pack.ShowData" />
+</beans>
