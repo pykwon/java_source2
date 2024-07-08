@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BusinessImpl implements BusinessInter{
-	// 모델 클래스를 사용
+public class BusinessImpl implements BusinessInter{ 
+	// 모델 클래스를 사용 
 	@Autowired
 	@Qualifier("sangpumImpl")
 	private SangpumInter inter;

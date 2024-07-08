@@ -21,7 +21,7 @@ public class SangpumImpl implements SangpumInter{
 			System.out.println("driver loadding 실패:" + e.getMessage());
 		}
 	}
-	
+	 
 	@Override
 	public ArrayList<SangpumDto> selectAll() {
 		ArrayList<SangpumDto> list = new ArrayList<SangpumDto>();
