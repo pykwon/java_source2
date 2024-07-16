@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>직원 목록 (@MVC: DB1 전통적방법) </h3>
+	<table border="1">
+		<tr>
+			<th>사번</th>
+			<th>직원명</th>
+			<th>성별</th>
+			<th>연봉</th>
+		</tr>
+		<tr th:each="data:${datas}">
+			<td>[[${data.jikwon_no}]]</td>
+			<td>[[${data.jikwon_name}]]</td>
+			<td>[[${data.jikwon_gen}]]</td>
+			<td>[[${data.jikwon_pay}]]</td>
+		</tr>
+	</table>
+	<br>인원수 : [[${datas.size}]] 명
+</body>
+</html>

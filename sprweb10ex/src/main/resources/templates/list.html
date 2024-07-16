@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h3>회원 정보(@MVC - JdbcDaoSupport)</h3>
+
+<!-- 아래 추가 2개는 같은 형식으로 오른쪽은 타임리프 형식 -->
+<table border="1">
+	<th:block th:if="${list.size > 0 }">
+	
+	<tr>
+		<th>사번</th><th>직원명</th><th>성별</th><th>연봉</th>
+	</tr>	
+	<tr th:each="mem:${list}">
+		<td th:text="${mem.jikwon_no}">id</td>
+		<td>[[${mem.jikwon_name}]]</td>
+		<td>[[${mem.jikwon_gen}]]</td>
+		<td>[[${mem.jikwon_pay}]]</td>
+	</tr>
+	</th:block>
+</table>
+인원수 : [[${list.size}]] 명
+</body>
+</html>
