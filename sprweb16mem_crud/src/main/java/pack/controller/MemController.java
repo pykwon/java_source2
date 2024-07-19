@@ -6,10 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import pack.model.DataProcess;
-import pack.model.MemDto;
+import pack.model.Mem;
 
 @Controller
 public class MemController {
@@ -17,13 +16,13 @@ public class MemController {
 	private DataProcess dataProcess;
 	
 	@GetMapping("/")
-	public String chulbal() {
+	public String main() {
 		return "chulbal";
 	}
 	
 	@GetMapping("list")
 	public String list(Model model) {
-		ArrayList<MemDto> list = (ArrayList<MemDto>)dataProcess.getDataAll();
+		ArrayList<Mem> list = (ArrayList<Mem>)dataProcess.getDataAll();
 		model.addAttribute("datas", list);
 		return "list";
 	}
@@ -33,42 +32,20 @@ public class MemController {
 		return "insert";
 	}
 	
+	
 	@PostMapping("insert")
-	public String insertProcess(MemBean bean){
+	public String insertProcess(Model model){
+
 		boolean b = dataProcess.insert(bean);
 		if(b)
 			return "redirect:/list";
 		else
-			return "redirect:/error";
+			return "redirect:/error";	
 	}
 	
 	@GetMapping("error")
 	public String error() {
 		return "error";
 	}
-	
-	@GetMapping("update")
-	public String update(@RequestParam("num") String num, Model model) {
-		MemDto dto = dataProcess.getData(num);
-		model.addAttribute("data", dto);
-		return "update";
-	}
-	
-	@PostMapping("update")
-	public String updateProcess(MemBean bean){
-		boolean b = dataProcess.update(bean);
-		if(b)
-			return "redirect:/list";
-		else
-			return "redirect:/error";
-	}
-	
-	@GetMapping("delete")
-	public String delete(@RequestParam("num") String num) {
-		boolean b = dataProcess.delete(num);
-		if(b)
-			return "redirect:/list";
-		else
-			return "redirect:/error";
-	}
+
 }
