@@ -43,9 +43,33 @@ public class DataProcess {
 		}
 	}
 	
+	// 레코드 한 개 읽기 : 수정, 삭제에서 사용
+	public Mem getData(String num) {
+		Mem mem = memRepository.findByNum(num);
+		return mem;
+	}
+	
 	// 수정
+	public String update(MemBean bean) {
+		try {
+			Mem mem = new Mem();
+			mem.setNum(bean.getNum());
+			mem.setName(bean.getName());
+			mem.setAddr(bean.getAddr());
+			memRepository.save(mem);
+			return "success";
+		} catch (Exception e2) {
+			return "수정 오류 : " + e2.getMessage();
+		}
+	}
 	
 	// 삭제
-	
-	
+	public String delete(int num) {
+		try {
+			memRepository.deleteById(num);
+			return "success";
+		} catch (Exception e2) {
+			return "삭제 오류 : " + e2.getMessage();
+		}
+	}
 }
