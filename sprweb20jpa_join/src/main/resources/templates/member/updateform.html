@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h3>회원(예:머털도사 - 여름 어느날) 수정 폼</h3>
+<form th:action="@{/member/update}" method="post">
+번호 : <input type="text" name="num" th:value="${dto.num}" readonly><br>
+이름 : <input type="text" name="name" th:value="${dto.name}"><br>
+주소 : <input type="text" name="addr" th:value="${dto.addr}"><br>
+<br>
+<button type="submit">수정</button>
+</form>
+</body>
+</html>
