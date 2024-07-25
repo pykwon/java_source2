@@ -11,6 +11,6 @@ public class Main {
 		MyInter myInter = (MyInter)context.getBean("myProcess");
 		myInter.inputMoney();
 		myInter.showResult();
-	}
+	} 
 
 }

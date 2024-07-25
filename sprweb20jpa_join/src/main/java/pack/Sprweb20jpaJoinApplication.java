@@ -19,7 +19,7 @@ import pack.repository.EmpRepository;
 @SpringBootApplication
 public class Sprweb20jpaJoinApplication {
 	// 1) 어플리케이션에서 SQL 처리용 JPA 메소드 연습
-	// 2) @MVC로 회원자료 처리
+	// 2) @MVC로 회원자료 처리 
 	// 3) @MVC로 직원자료 처리 (조인)
 	// 4) JPQL 연습용 화면 작성 : Ajax
 	// H2 DB
