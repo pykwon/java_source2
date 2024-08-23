@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/abcweb/static/css/main.32058132.css",
+    "main.js": "/abcweb/static/js/main.61a87d97.js",
+    "static/js/453.3940b0ed.chunk.js": "/abcweb/static/js/453.3940b0ed.chunk.js",
+    "static/media/logo.svg": "/abcweb/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/abcweb/index.html",
+    "main.32058132.css.map": "/abcweb/static/css/main.32058132.css.map",
+    "main.61a87d97.js.map": "/abcweb/static/js/main.61a87d97.js.map",
+    "453.3940b0ed.chunk.js.map": "/abcweb/static/js/453.3940b0ed.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.32058132.css",
+    "static/js/main.61a87d97.js"
+  ]
+}
