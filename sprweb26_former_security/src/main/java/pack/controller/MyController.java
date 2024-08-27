@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MyController {
-	@GetMapping("/login")
+	@GetMapping("/login") 
 	public String login() {
 		return "login";
 	}

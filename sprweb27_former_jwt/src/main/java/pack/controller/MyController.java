@@ -16,7 +16,7 @@ import pack.JwtService;
 
 @Controller
 @RequestMapping("/auth")
-public class MyController {
+public class MyController { 
 	@Autowired
 	private JwtService jwtService;
 	

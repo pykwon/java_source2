@@ -43,7 +43,7 @@ public class SecurityConfig {  // 기본적인 웹 보안 구성을 설정
 					.expiredUrl("/login?expired")  // 세션 만료시 로긴으로 이동
 			);
 		
-		return http.build();
+		return http.build(); 
 	}
 	
 	@Bean
