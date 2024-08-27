@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import lombok.Data;
 
 @Data
-public class BoardBean {
+public class BoardBean { 
 	private int num, readcnt, gnum, onum, nested;
 	private String name, pass, mail, title, cont, bip, bdate;
 	private String searchName, searchValue;
