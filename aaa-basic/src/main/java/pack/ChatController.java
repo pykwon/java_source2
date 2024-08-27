@@ -5,7 +5,7 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class ChatController {
+public class ChatController { 
 	// 클라이언트가 "/app/message"로 전송한 메시지를 처리하는 메서드
 	@MessageMapping("/message")
 	// 처리된 메시지는 "/topic/messages"로 브로드캐스트된다.

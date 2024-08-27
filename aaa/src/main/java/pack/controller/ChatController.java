@@ -6,7 +6,7 @@ import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
 import pack.model.ChatMessage;
 
-// WebSocket 메시지를 처리하는 컨트롤러 클래스.
+// WebSocket 메시지를 처리하는 컨트롤러 클래스. 
 // 클라이언트로부터 받은 메시지를 처리하고, 이를 다른 클라이언트들에게 브로드캐스트하는 역할.
 // Spring의 STOMP 메시징을 통해 작동하며, 메시지 매핑 및 브로드캐스트를 수행.
 @Controller
