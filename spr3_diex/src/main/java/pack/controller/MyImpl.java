@@ -5,7 +5,7 @@ import pack.model.SangpumInter;
  
 public class MyImpl implements MyInter {
 	private SangpumInter inter;
-	private String rs[];
+	private String rs[]; 
 	
 	public MyImpl(SangpumInter inter) {
 		this.inter = inter;
