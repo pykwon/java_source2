@@ -18,7 +18,7 @@ function connect(){
 	
 	// 연결에 성공하면 콜백 ㅎ마수가 호출
 	stompClient.connect({}, function(frame){  // frame: command, header, body 로 구성
-		console.log('connected : ' + frame);
+		console.log('connected : ' + frame); 
 		// '/topic/messages'로 수신된 메세지를 처리
 		// 메세지를 수신(구독)할 클라이언트는 서버가 해당 경로에 브로드캐스트한 메세지를 모두 수신 가능
 		// 한 명의 클라이언트가 메세지를 전송하면 접속된 모든 클라이언트가 이를 수신할 수 있다.

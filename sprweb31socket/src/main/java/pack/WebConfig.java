@@ -5,7 +5,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class WebConfig implements WebMvcConfigurer {
+public class WebConfig implements WebMvcConfigurer { 
 	// CORS 설정을 관리하기 위해 사용되는 인터페이스
 	// 글로벌 CORS 설정은 모든 HTTP 엔드포인트에 대해 적용된다. 
 	// 필요에 따라 특정 경로에 대해서만 CORS를 설정할 수도 있다.
