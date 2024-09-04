@@ -6,6 +6,11 @@
 </head>
 <body>
 <h2>구구단 입력 페이지</h2>
+<div sec:authorize="isAuthenticated()">
+    <strong sec:authentication="name"></strong>님 로그인 중...
+    <a th:href="@{/user/logout}">로그아웃</a>
+</div>
+
 <form th:action="@{/auth/gugu}" method="post">
 	<label for="num">구구단 숫자 입력 : </label>
 	<input type="number" id="num" name="num" value="2" required />
