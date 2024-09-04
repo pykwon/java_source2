@@ -1,6 +1,6 @@
-package pack.entity;
+ package pack.entity;
 
-
+ 
 import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;

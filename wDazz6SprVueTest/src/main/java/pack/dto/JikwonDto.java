@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pack.entity.Jikwon;
-
+ 
 @Getter
 @Setter
 @Builder

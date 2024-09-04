@@ -18,7 +18,7 @@ public class TestController {
 	@Autowired
 	private TestDao trps;
 
-	@GetMapping("/jikwon/{jik}")
+	@GetMapping("/jikwon/{jik}") 
 	public List<JikwonDto> getJikwonData(@PathVariable("jik") String jik) {
 		return trps.getJikwonData(jik);
 	}
