@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/chat.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script type="text/javascript">
+let stompClient = null;
+
+function connect(){
+	let socket = new SockJS('/ws'); // /ws 엔드포인트를 통해 WebSocket 연결객체를 생성
+	
+	// 클라이언트가 WebSocket 연결을 통해 Stomp를 사용할 수 있도록 설정
+	stompClient = Stomp.over(socket);
+	
+	// 연결에 성공하면 콜백 함수가 호출
+	stompClient.connect({}, function(frame){  // frame: command, header, body 로 구성
+		console.log('connected : ' + frame); 
+		// '/topic/messages'로 수신된 메세지를 처리
+		// 메세지를 수신(구독)할 클라이언트는 서버가 해당 경로에 브로드캐스트한 메세지를 모두 수신 가능
+		// 특정 주제('/topic/public')를 구독하여, 서버에서 메시지를 수신
+		stompClient.subscribe('/topic/public', function(message){
+			showMessage(JSON.parse(message.body));
+		});
+	})
+}
+
+function sendMessage(){
+	let nameInput = document.querySelector("#name");
+	let messageContent = document.querySelector("#message").value;
+	
+	// 채팅명(이름) 입력이 완료되지 않은 경우,  채팅명을 입력 후 서버로 전송 ==> 이름 입력란을 비활성화
+	if(!nameInput.disabled){
+		stompClient.send("/app/chat.addUser", {}, JSON.stringify({sender:nameInput.value, type:'JOIN'}));
+		nameInput.disabled = true;
+	}
+	
+	// 입력된 메세지가 있고, 연결이 된 상태라면 메세지를 서버로 전송
+	if(messageContent && stompClient){
+		let chatMessage = {
+			sender:nameInput.value,
+			content:messageContent,
+			type:'CHAT'
+		};
+		
+		stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+		document.querySelector("#message").value = '';
+	}
+}
+
+function showMessage(message){
+	let messageElement = document.createElement("li");
+	
+	// 메세지 타입에 따라 출력 내용 다름
+	if(message.type === 'JOIN'){  // 채팅 입장
+		messageElement.classList.add('event-message');
+		message.content = message.sender + "님 입장 😍";
+	}else if(message.type === 'LEAVE'){ // 채팅 퇴장
+		messageElement.classList.add('event-message');
+		message.content = message.sender + "님 퇴장 😒";
+	}else{ // 채팅
+		messageElement.classList.add('chat-message');
+		//채팅명:메세지   형태로 출력
+		let usernameElement = document.createElement('strong');
+		usernameElement.classList.add('nickname');
+		
+		let usernameText = document.createTextNode(message.sender + ":");
+		
+		usernameElement.appendChild(usernameText);
+		messageElement.appendChild(usernameElement);
+	}
+	
+	// 메세지 내용 표시
+	let textElement = document.createElement('span');
+	let messageText = document.createTextNode(message.content);
+	textElement.appendChild(messageText);   // <span>채팅내용</span>
+	
+	messageElement.appendChild(textElement); // <strong>채팅명</strong>:<span>채팅내용</span>
+	
+	document.querySelector("#messageArea").appendChild(messageElement);
+	
+	// 자동 스크롤
+	let messageArea = document.querySelector("#messageArea");
+    messageArea.scrollTop = messageArea.scrollHeight;
+}
+
+function leaveChat(){ // 채팅방 퇴장 처리용
+	if(stompClient) {
+		stompClient.disconnect();
+	}
+	
+	document.querySelector("#name").disabled = false;
+	alert("나, 채팅방 떠난다~ 바이!");
+}
+
+window.onload = function(){
+	connect();
+}
+
+window.onbeforeunload = function(){  // 브라우저가 닫히기 전에 WebSocket 연결 종료
+	if(stompClient){
+		stompClient.disconnect();
+	}
+}
+</script>
+</head>
+<body>
+<div>
+		<h2 style="color: #004d40">🏡 채팅</h2>
+		<ul id="messageArea">
+		</ul>
+
+		<!-- 입력창과 버튼을 감싸는 컨테이너 추가 -->
+		<div id="inputContainer">
+			<input type="text" id="name" placeholder="이름 입력"> <input
+				type="text" id="message" size="100" placeholder="메세지 입력"
+				onkeydown="if (event.keyCode == 13) sendMessage()">
+			<button onclick="sendMessage()">전송</button>
+			<button onclick="leaveChat()">퇴장</button>
+		</div>
+	</div>
+</body>
+</html>
