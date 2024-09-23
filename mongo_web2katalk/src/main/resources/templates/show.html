@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>SNS(카톡) 데이터(분산저장된 빅 데이터) 출력</h2>
+<table>
+  <thead>
+  	<tr>
+  		<th>화자1</th><th>화자2</th>
+  	</tr>
+  </thead>
+  <tbody>
+  	<tr th:each="kdata:${datalist}">
+  		<td th:text="${kdata.req}"></td>
+  		<td th:text="${kdata.res}"></td>
+  	</tr>
+  </tbody>
+</table>
+</body>
+</html>
